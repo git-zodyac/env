@@ -1,6 +1,6 @@
 {
   "name": "@bebrasmell/zod-env",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Parse environment variables with zod",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -17,6 +17,10 @@
   "author": "",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bebrasmell/zod-env"
+  },
   "devDependencies": {
     "@types/node": "^20.10.4",
     "tsup": "^8.0.1",

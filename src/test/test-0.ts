@@ -2,10 +2,15 @@ import { z } from "zod";
 import { parse } from '../index.js';
 
 const schema = z.object({
-  TEST_FIELD_0: z.string({
-    required_error: "TEST_FIELD_0 field is required",
-  }),
+  required: z.string(),
+  test: z.string().default("default value"),
+  optional: z.string().optional(),
+  numbered: z.coerce.number().default(0),
 });
 
-const env = parse(schema);
+type Schema = z.infer<typeof schema>;
+//    ^?
+const env = parse(schema, {});
+type Env = typeof env;
+//    ^?
 console.log(env);
