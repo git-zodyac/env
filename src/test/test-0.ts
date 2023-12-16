@@ -10,7 +10,7 @@ const schema = z.object({
 
 type Schema = z.infer<typeof schema>;
 //    ^?
-const env = parse(schema, {});
+const env = parse(schema, { path: "./path.env" });
 type Env = typeof env;
 //    ^?
 console.log(env);
