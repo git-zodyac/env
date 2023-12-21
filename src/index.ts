@@ -8,9 +8,12 @@ import { ZodRawShape, z } from "zod";
  * @param options Ignore process.env, or specify a path to a .env file
  * @returns An object of your Environment Variables
  */
-export function parse<T extends ZodRawShape>(schema: z.ZodObject<T>, options?: PartialZodEnvOptions): z.infer<typeof schema> {
-  const process_env = options?.ignoreProcessEnv? undefined : process.env;
-  const dotenv = options?.path? config({ path: options?.path }) : config();
+export function parse<T extends ZodRawShape>(
+  schema: z.ZodObject<T>,
+  options?: PartialZodEnvOptions,
+): z.infer<typeof schema> {
+  const process_env = options?.ignoreProcessEnv ? undefined : process.env;
+  const dotenv = options?.path ? config({ path: options?.path }) : config();
 
   const raw = dotenv.parsed ?? process_env;
   if (!raw) throw new Error("No environment variables found");
