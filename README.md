@@ -1,11 +1,16 @@
 # Zod Environment parser
+
+[![npm version](https://badge.fury.io/js/%40zodyac%2Fenv.svg)](https://badge.fury.io/js/%40zodyac%2Fenv)
+
+> A part of [Zodyac](https://npmjs.com/org/zodyac) project.
+
 This package allows you to parse your ```.env``` file or ```process.env``` safely.
 
 ### Installation
 Install the package:
 
 ```bash
-npm i @bebrasmell/zod-env
+npm i @zodyac/env
  ```
 
 ### Usage
@@ -22,7 +27,7 @@ Don't forget to use ``` z.coerce ``` on types other than String!
 Parse your environment using ```parse()```:
 
 ```typescript
-import { parse } from '@bebrasmell/zod-env';
+import { parse } from '@zodyac/env';
 const env = parse(env_schema);
 ```
 
@@ -50,5 +55,5 @@ const env = parse(env_schema, {
 });
 ```
 
-<!-- ### Upcomming features
-1. Allow type-safe usage of ```z.default()``` -->
+### License
+MIT
