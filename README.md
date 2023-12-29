@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40zodyac%2Fenv.svg)](https://badge.fury.io/js/%40zodyac%2Fenv)
 
-> A part of [Zodyac](https://npmjs.com/org/zodyac) project.
+> A part of [Zodyac](https://npmjs.com/org/zodyac) project, but you are absolutely welcome use it separately 😘.
 
 This package allows you to parse your ```.env``` file or ```process.env``` safely.
 

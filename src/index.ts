@@ -7,6 +7,14 @@ import { ZodRawShape, z } from "zod";
  * @param schema A Zod schema of your Environment Variables
  * @param options Ignore process.env, or specify a path to a .env file
  * @returns An object of your Environment Variables
+ *
+ * @example
+ * import { parse } from "@zodyac/env";
+ *
+ * const schema = z.object({
+ *  PORT: z.string().default("3000"),
+ *  NODE_ENV: z.enum(["development", "production"]).default("development"),
+ * });
  */
 export function parse<T extends ZodRawShape>(
   schema: z.ZodObject<T>,
