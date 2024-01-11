@@ -1,6 +1,6 @@
 {
   "name": "@zodyac/zod-env",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse environment variables with zod",
   "scripts": {
     "test": "ts-node --esm ./src/test/test.ts",
@@ -34,7 +34,7 @@
   "homepage": "https://zodyac.dev/toolbox/zod-env",
   "repository": {
     "type": "git",
-    "url": "https://github.com/git-zodyac/env"
+    "url": "git+https://github.com/git-zodyac/env.git"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
