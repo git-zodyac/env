@@ -1,8 +1,8 @@
 # Zod Environment parser
 
-[![npm version](https://badge.fury.io/js/%40zodyac%2Fenv.svg)](https://badge.fury.io/js/%40zodyac%2Fenv)
+[![npm version](https://badge.fury.io/js/%40zodyac%2Fzod-env.svg)](https://badge.fury.io/js/%40zodyac%2Fzod-env)
 
-> A part of [Zodyac](https://npmjs.com/org/zodyac) project, but you are absolutely welcome use it separately 😘.
+> A part of [Zodyac](https://npmjs.com/org/zodyac) toolbox.
 
 This package allows you to parse your ```.env``` file or ```process.env``` safely.
 
