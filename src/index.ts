@@ -1,9 +1,12 @@
-import { config } from "dotenv";
+import { parse as dotParse } from "dotenv";
+import { readFileSync } from "node:fs";
 import { PartialZodEnvOptions } from "types";
 import { ZodRawShape, z } from "zod";
 
 /**
  * Parses your Environment Variables with a Zod Schema
+ * By default, will merge `.env` file variables and `process.env` variables,
+ * until you explicitly set `ignoreProcessEnv` to `true`.
  * @param schema A Zod schema of your Environment Variables
  * @param options Ignore process.env, or specify a path to a .env file
  * @returns An object of your Environment Variables
@@ -18,16 +21,29 @@ import { ZodRawShape, z } from "zod";
  */
 export function parse<T extends ZodRawShape>(
   schema: z.ZodObject<T>,
-  options?: PartialZodEnvOptions,
+  options: PartialZodEnvOptions = {},
 ): z.infer<typeof schema> {
-  const process_env = options?.ignoreProcessEnv ? undefined : process.env;
-  const dotenv = options?.path ? config({ path: options?.path }) : config();
-
-  const raw = dotenv.parsed ?? process_env;
-  if (!raw) throw new Error("No environment variables found");
-
+  const raw = readEnv(options);
   const result = schema.safeParse(raw);
   if (!result.success) throw new Error(result.error.errors[0].message);
-
   return result.data;
+}
+
+function readEnv(opts: PartialZodEnvOptions) {
+  let dotenv: Record<string, string>;
+  try {
+    const envFile = readFileSync(opts.path ?? ".env", { encoding: "utf-8" });
+    dotenv = dotParse(envFile);
+  } catch (e) {
+    dotenv = {};
+  }
+  if (opts.ignoreProcessEnv) return dotenv;
+
+  const rMap = new Map<string, string>();
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key in dotenv) rMap.set(key, dotenv[key]);
+    else if (value) rMap.set(key, value);
+  }
+
+  return Object.fromEntries(rMap);
 }
